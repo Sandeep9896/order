@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="bg.mp4" type="video/mp4">
+      </video>
+    <div class="container">
+        <div class="nav">
+            <div id="step1">step1</div>
+            <div id="step2"> step2</div>
+            <div id="step3">step3</div>
+            <div id="step4">preveiw</div>
+        </div>
+        <div class="page1">
+            <label for="time"> what do you want </label><br>
+            <select name="time" id="time">
+                <option value="breakfast"> breakfast</option>
+                <option value="lunch"> lunch</option>
+                <option value="dinner"> dinner</option>
+            </select><br><br><br>
+            <label for="people"> enter number of person</label><br>
+            <input type="number" id="num">
+            <br>
+            <button onclick="next()">next</button>
+        </div>
+        <div class="page2">
+            <label for="time"> select restaurent </label><br>
+            <select name="" id="res-name">
+                <option value="dominos"> dominos</option>
+                <option value="pizza-hurt">pizza-hurt</option>
+                <option value="chai-holic"> chai-holic</option>
+                <option value="pirates-of-grill"> pirates-of-grill</option>
+            </select>
+            <button onclick="prev1()">privous</button>
+            <button onclick="next1()">next</button>
+        </div>
+        <div class="page3">
+            <label for="time"> select dish </label><br>
+            <select name="time" id="dis-name">
+                <option value="burger">buger</option>
+                <option value="pizza"> pizzza</option>
+                <option value="samosa"> samosa</option>
+                <option value="pasta"> pasta</option>
+                <option value="noodle"> noodle</option>
+                <option value="fried rice"> fried rice</option>
+                <option value="fried rice"> paneer</option>
+                <option value="fried rice"> mix veg</option>
+            </select><br><br><br>
+            <label for="people"> enter number of servings</label><br>
+            <input type="number" id="serving">
+            <button onclick="add()">addmore</button>
+            <br>
+            <button onclick="prev2()">privous</button>
+            <button onclick="next2()">next</button>
+        </div>
+        <div class="page4">
+            <label for="">selected meal: <p id="meal"></p></label><br>
+            <label for=""> number of person: <p id="no-person"></p></label><br>
+            <label for=""> selected restaurent: <p id="selres-name"></p></label><br>
+            <label for=""> selected dis: <p id="seldis-name"></p></label><br>
+            <label for=""> number of servings: <p id="serve"></p></label><br>
+            <button onclick="prev3()">privous</button>
+            <button onclick="submit()">submit</button>
+
+        </div>
+        <div class="page5">
+        <h1>your order has been succesfully ordered</h1>
+        </div>
+    </div>
+    <script>
+        var count = 1;
+        function next() {
+            document.querySelector('.page1').style.display = "none"
+            document.querySelector('.page2').style.display = "block"
+            document.querySelector('#step2').style.backgroundColor = "yellow"
+
+        }
+        function next1() {
+            document.querySelector('.page2').style.display = "none"
+            document.querySelector('.page3').style.display = "block"
+            document.querySelector('#step3').style.backgroundColor = "yellow"
+        }
+        function next2() {
+            document.querySelector('.page3').style.display = "none"
+            document.querySelector('.page4').style.display = "block"
+            let Meal = document.getElementById('meal')
+            let selectMeal = document.getElementById('time')
+            Meal.innerHTML = selectMeal.value;
+            let noperson = document.getElementById('no-person')
+            let selectNumperson = document.getElementById('num')
+            noperson.innerHTML = selectNumperson.value;
+            let resname=document.getElementById('res-name');
+            let selectResname=document.getElementById('selres-name')
+            selectResname.innerHTML=resname.value;
+            let disname=document.getElementById('dis-name');
+            let selectdisname=document.getElementById('seldis-name')
+            selectdisname.innerHTML=disname.value;
+            let servings = document.getElementById('serving')
+            let serve = document.getElementById('serve')
+            serve.innerHTML = servings.value
+            document.querySelector('#step4').style.backgroundColor = "yellow"
+
+        }
+        function add() {
+            let adds = document.createElement('label');
+            let input = document.createElement('input')
+            input.setAttribute('type', 'number')
+            input.setAttribute('id', 'serving' + count)
+            adds.innerHTML = "<br>enter number of serving<br>"
+            document.querySelector('.page3').appendChild(adds)
+            document.querySelector('.page3').appendChild(input)
+            count++;
+            
+        }
+        function prev1() {
+            document.querySelector('.page1').style.display = "block"
+            document.querySelector('.page2').style.display = "none"
+            document.querySelector('#step2').style.backgroundColor = ""
+
+        }
+        function prev2() {
+            document.querySelector('.page2').style.display = "block"
+            document.querySelector('.page3').style.display = "none"
+            document.querySelector('#step3').style.backgroundColor = ""
+
+        }
+        function prev3() {
+            document.querySelector('.page3').style.display = "block"
+            document.querySelector('.page4').style.display = "none"
+            document.querySelector('#step4').style.backgroundColor = ""
+
+        }
+        
+        function submit(){
+            document.querySelector('.page5').style.display = "block"
+            document.querySelector('.page4').style.display = "none"
+            document.querySelector('.nav').style.display = "none"
+
+        }
+
+    </script>
+</body>
+
+</html>
